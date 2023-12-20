@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Graphik:wght@300&display=swap');
+
+body {
+    overflow-y: scroll;
+  }
+  
+  a:hover {
+    cursor: pointer;
+  }
+  
+  div.error {
+    white-space: pre-line;
+  }
+  
+  #root {
+    background-color: #2c3440;
+  }
+
+  .font-times-new-roman {
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .font-weight-semi-bold {
+    font-weight: 600;
+  }
+
+  .text-custom-color {
+    color: #99aabb;
+  }
+
+
+  
+  
