@@ -30,10 +30,11 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
     List<Produto> findByCategoriaSlug(String slug);
 
     @Query(
-            value = "select p from Produto p left join fetch p.categoria where p.nome like %:nome% order by p.id desc",
+            value = "select p from Produto p left join fetch p.categoria where p.nome like %:nome%",
             countQuery = "select count(p) from Produto p where p.nome like %:nome%"
     )
     Page<Produto> recuperarProdutosPaginados(String nome, Pageable pageable);
+
 
     @Query(
             value = "select p from Produto p left join fetch p.categoria c where c.slug=:slug order by p.nome asc",
