@@ -47,26 +47,34 @@ const CardsDeProdutosPage = () => {
       loader={<h6 style={{ color: "#99aabb" }}>Carregando...</h6>}
       style={{ overflow: "visible" }}
     >
-      <div className="row align-items-stretch" style={{ margin: "20px 0" }}>
-        {data?.pages.map((page) =>
-          page.itens.map((produto) => (
-            <div key={produto.id} className="col-md-3 col-sm-4 col-6 d-flex" style={{ marginBottom: "20px" }}>
-              <NavLink to={`/produto/${produto.id}`} style={{ textDecoration: "none", color: "inherit", width: "100%" }}>
-                <div className="card-produto">
-                  <img src={produto.imagem} alt={produto.nome} />
-                  <h3 className="card-title">{produto.nome}</h3>
-                  <p className="card-preco">
-                    R$ {produto.preco.toLocaleString("pt-BR", { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
-                  </p>
-                  <button className="btn-comprar" onClick={() => handleAdicionarItem(produto)}>
-                    Comprar
-                  </button>
-                </div>
-              </NavLink>
-            </div>
-          ))
-        )}
+<div className="row align-items-stretch" style={{ margin: "20px 0" }}>
+  {data?.pages.map((page) =>
+    page.itens.map((produto) => (
+      <div key={produto.id} className="col-md-3 col-sm-4 col-6 d-flex" style={{ marginBottom: "20px" }}>
+        <div className="card-produto">
+          <NavLink to={`/produto/${produto.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+            <img src={produto.imagem} alt={produto.nome} />
+            <h3 className="card-title">{produto.nome}</h3>
+          </NavLink>
+          <p className="card-preco">
+            R$ {produto.preco.toLocaleString("pt-BR", { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+          </p>
+          <button
+            className="btn-comprar"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleAdicionarItem(produto);
+            }}
+          >
+            Comprar
+          </button>
+        </div>
       </div>
+    ))
+  )}
+</div>
+
+
     </InfiniteScroll>
   );
 };
