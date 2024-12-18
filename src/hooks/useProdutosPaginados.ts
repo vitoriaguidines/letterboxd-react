@@ -7,6 +7,8 @@ interface QueryString {
   pagina: number;
   tamanho: number;
   nome: string;
+  sort: string;
+  direction: string;
 }
 
 // const pessoa1 = {nome: "Joao", salario: 5000};
