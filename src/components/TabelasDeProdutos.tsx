@@ -1,3 +1,4 @@
+import { useState } from "react";
 import dayjs from "dayjs";
 import Produto from "../interfaces/produto";
 import useProdutosPaginados from "../hooks/useProdutosPaginados";
@@ -12,10 +13,16 @@ const TabelasDeProdutos = () => {
   const setPagina = useProdutoStore((s) => s.setPagina);
   const setProdutoSelecionado = useProdutoStore((s) => s.setProdutoSelecionado);
 
-  const tratarRemocaoDeProduto = (id: number) => {
-    removerProduto(id);
-    setPagina(0);
+  const [loadingId, setLoadingId] = useState<number | null>(null);
+
+  const tratarRemocaoDeProduto = async (id: number) => {
+    setLoadingId(id); // Ativa o spinner no botão específico
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simula o delay de 1 segundo
+    await removerProduto(id); // Chama a função real de remoção
+    setLoadingId(null); // Desativa o spinner após a remoção
+    setPagina(0); // Atualiza a página
   };
+
   const tratarProdutoSelecionado = (produto: Produto) =>
     setProdutoSelecionado(produto);
 
@@ -70,6 +77,7 @@ const TabelasDeProdutos = () => {
               <a
                 className="link-underline texto-branco"
                 onClick={() => tratarProdutoSelecionado(produto)}
+                style={{ cursor: "pointer" }}
               >
                 {produto.nome}
               </a>{" "}
@@ -92,8 +100,20 @@ const TabelasDeProdutos = () => {
               <button
                 onClick={() => tratarRemocaoDeProduto(produto.id!)}
                 className="btn btn-danger btn-sm"
+                disabled={loadingId === produto.id} // Desativa o botão durante o carregamento
               >
-                Remover
+                {loadingId === produto.id ? (
+                  <>
+                    <span
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>{" "}
+                    Carregando...
+                  </>
+                ) : (
+                  "Remover"
+                )}
               </button>
             </td>
           </tr>
