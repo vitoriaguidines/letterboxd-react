@@ -23,10 +23,10 @@ O projeto **Letterboxd React** foi desenvolvido para:
 ### Exibição dos Detalhes do Produto
 ![Detalhes do Produto](prints/print2.png)
 
-### Carrinho de Compras
+### Journal com Informações
 ![Carrinho de Compras](prints/print3.png)
 
-### API Back-End em Execução
+### Carrinho de Compras
 ![API Back-End](prints/print4.png)
 
 ---
