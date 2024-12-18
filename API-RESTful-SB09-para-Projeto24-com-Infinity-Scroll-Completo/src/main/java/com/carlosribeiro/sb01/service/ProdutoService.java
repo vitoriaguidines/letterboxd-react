@@ -26,6 +26,10 @@ public class ProdutoService {
         return produtoRepository.recuperarProdutosComCategoria();
     }
 
+    public List<Produto> recuperarProdutosEmItensCarrinho(){
+        return produtoRepository.recuperarProdutosEmItensCarrinho();
+    }
+
     public Produto cadastrarProduto(Produto produto) {
         if(produto.getId() == null) {
             return produtoRepository.save(produto);
@@ -73,7 +77,6 @@ public class ProdutoService {
 //            umProduto.setDataCadastro(produto.getDataCadastro());
 //            umProduto.setCategoria(produto.getCategoria());
 //            return umProduto;
-//            // return produtoRepository.save(umProduto);
 //        }
 //        else {
 //            throw new EntidadeTransienteException("Tentando alterar um objeto transiente.");
@@ -94,6 +97,7 @@ public class ProdutoService {
     public List<Produto> recuperarProdutoDeUmaCategoriaPorId(Long id) {
         return produtoRepository.findByCategoriaId(id);
     }
+
 
     public List<Produto> recuperarProdutosPorIdCategoria(Long id) {
         return produtoRepository.findByCategoriaId(id);

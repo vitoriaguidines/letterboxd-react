@@ -29,11 +29,11 @@ public class ProdutoController {
         return produtoService.recuperarProdutos();
     }
 
-//    @PostMapping
-//    public ResponseEntity<Produto> cadastrarProduto(@RequestBody Produto produto) {
-//        Produto umProduto = produtoService.cadastrarProduto(produto);
-//        return new ResponseEntity<>(umProduto, HttpStatus.OK);
-//    }
+    @GetMapping("/em-itens-carrinho")
+    public List<Produto> recuperarProdutosEmItensCarrinho() {
+        return produtoService.recuperarProdutosEmItensCarrinho();
+    }
+
 
     @PostMapping
     public Produto cadastrarProduto(@RequestBody Produto produto) {

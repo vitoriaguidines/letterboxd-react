@@ -27,6 +27,7 @@ public class Produto {
 
     @NotEmpty(message = "O 'Nome' deve ser informado.")
     private String nome;
+
     @NotEmpty(message = "A 'Descrição' deve ser informada.")
     private String descricao;
 
@@ -46,6 +47,7 @@ public class Produto {
     @ManyToOne
     // @JoinColumn(name = "CATEGORIA_ID", foreignKey = @ForeignKey(name="CATEGORIA_PRODUTO_CATEGORIA_ID_FK"))
     private Categoria categoria;
+
 
     public Produto(String imagem,
                    Categoria categoria,

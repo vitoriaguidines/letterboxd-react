@@ -17,6 +17,9 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
     @Query("select p from Produto p left outer join fetch p.categoria order by p.id")
     List<Produto> recuperarProdutosComCategoria();
 
+    @Query("SELECT p FROM ItemCarrinho ic JOIN ic.produto p ORDER BY p.id")
+    List<Produto> recuperarProdutosEmItensCarrinho();
+
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select p from Produto p left outer join fetch p.categoria where p.id = :id")
     Optional<Produto> recuperarProdutoPorIdComLock(Long id);
