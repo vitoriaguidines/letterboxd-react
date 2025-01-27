@@ -56,7 +56,7 @@ function NavBar() {
             >
               <li className="ms-2" style={{ marginRight: "20px" }}>
                 <Link
-                  to="/login"
+                  to="/perfil"
                   style={{ textDecoration: "none", color: "#99aabb" }}
                 >
                   PERFIL

@@ -1,21 +1,35 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  
+
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     console.log('Usuário:', username);
     console.log('Senha:', password);
 
-    // Exemplo: Verifique se o usuário e a senha são válidos e faça o redirecionamento
-    // para a página adequada se o login for bem-sucedido.
-    // Se você estiver usando uma biblioteca de roteamento, como o react-router-dom, você pode usá-la para navegação.
-    // Exemplo: history.push('/dashboard');
+    if (username === 'admin' && password === '123') {
+      localStorage.setItem('token', 'tokenExemplo123');
+
+      navigate('/');
+    } else {
+      alert('Credenciais inválidas. Tente novamente.');
+    }
   };
 
   return (
-    <div style={{ color: '#99aabb', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+    <div style={{
+      color: '#99aabb',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100vh'
+    }}>
       <h2>Login</h2>
       <form style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '10px' }}>
@@ -38,7 +52,11 @@ const LoginPage = () => {
             style={{ backgroundColor: '#99aabb', color: '#efefef', marginBottom: '10px' }}
           />
         </div>
-        <button type="button" onClick={handleLogin} style={{ backgroundColor: '#99aabb', color: '#efefef' }}>
+        <button
+          type="button"
+          onClick={handleLogin}
+          style={{ backgroundColor: '#99aabb', color: '#efefef' }}
+        >
           Login
         </button>
       </form>

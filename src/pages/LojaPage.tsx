@@ -11,13 +11,11 @@ const LojaPage = () => {
 
   return (
     <div className="row">
-      {/* Barra Lateral de Categorias */}
       <div className="col-lg-2">
         <h5 style={{ fontWeight: "lighter", color: "#AABBCC", fontSize: "20px" }}>
           Categorias
         </h5>
         <div className="nav flex-column nav-pills">
-          {/* Link para Todos os Produtos */}
           <NavLink
             aria-current="page"
             className={`nav-link ${location.pathname === "/" ? "active" : ""}`}
@@ -31,7 +29,6 @@ const LojaPage = () => {
             Todos
           </NavLink>
 
-          {/* Links para as Categorias */}
           {categorias?.map((categoria) => (
             <NavLink
               key={categoria.id}
@@ -51,7 +48,6 @@ const LojaPage = () => {
         </div>
       </div>
 
-      {/* Conteúdo Principal */}
       <div className="col-lg-10">
         <Outlet />
       </div>

@@ -9,60 +9,71 @@ import CardDeProdutoPage from '../pages/CardProdutoPage';
 import CadastroDeProdutosForm from '../components/CadastroDeProdutosForm';
 import LoginPage from '../pages/LoginPage';
 import JournalPage from '../pages/JournalPage'; 
+import PerfilPage from '../pages/PerfilPage';
+import ProtectedRoute from './ProtectedRoute';
 
 const router = createBrowserRouter([
-    {
+  {
+    path: "/",
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
         path: "/",
-        element: <Layout />,
-        errorElement: <ErrorPage />,
+        element: <LojaPage />,
         children: [
-            { 
-                path: "/", 
-                element: <LojaPage />,
-                children: [
-                    {
-                        path: ":slug?",
-                        element: <CardsDeProdutosPage />
-                    }
-                ]
-            },      
-            { 
-                path: "cadastrar-produto", 
-                element: <CadastroDeProdutosPage />,
-                children: [
-                    {
-                        path: ":id?",
-                        element: <CadastroDeProdutosForm />
-                    }
-                ]
-            },  
-            { 
-                path: "login", 
-                element: <LoginPage />,
-                children: [
-                    {
-                        path: ":id?",
-                        element: <LoginPage />
-                    }
-                ]
-            },           
-            { 
-                path: "produto", 
-                element: <CardDeProdutoPage />,
-                children: [
-                    {
-                        path: ":id?",
-                        element: <CardDeProdutoPage />
-                    }
-                ]
-            },
-            { path: "carrinho", element: <CarrinhoPage /> },
-            { 
-                path: "journal", 
-                element: <JournalPage /> 
-            },       
+          {
+            path: ":slug?",
+            element: <CardsDeProdutosPage />
+          }
         ]
-    }
+      },
+      {
+        path: "cadastrar-produto",
+        element: (
+          <ProtectedRoute>
+            <CadastroDeProdutosPage />
+          </ProtectedRoute>
+        ),
+        children: [
+          {
+            path: ":id?",
+            element: <CadastroDeProdutosForm />
+          }
+        ]
+      },
+      {
+        path: "login",
+        element: <LoginPage />
+      },
+      {
+        path: "produto",
+        element: <CardDeProdutoPage />,
+        children: [
+          {
+            path: ":id?",
+            element: <CardDeProdutoPage />
+          }
+        ]
+      },
+      { path: "carrinho", 
+    element: ( 
+      <ProtectedRoute>
+        <CarrinhoPage />
+    </ProtectedRoute> )
+    },
+      { path: "journal", element: <JournalPage /> },
+
+      {
+        path: "perfil",
+        element: (
+          <ProtectedRoute>
+            <PerfilPage />
+          </ProtectedRoute>
+        )
+      }
+    ]
+  }
 ]);
 
 export default router;
